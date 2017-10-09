@@ -98,8 +98,6 @@
 									class="btn btn-info data-dismiss="modal">Close</button>
 							</div>
 						</form>
-
-
 					</div>
 				</div>
 			</div>
@@ -220,7 +218,7 @@
 		});
 	}
 	function updateAccount(id) {
-		console.log("inside javascript");
+		console.log("inside edit javascript");
 		$.ajax({
 			type : 'POST',
 			url : 'Home',
@@ -237,7 +235,6 @@
 				$('#accountno').val(result.accountno);
 				$('#city').val(result.city);
 				$('#id1').val(id);
-
 				$('#editModal').modal('show');
 			},
 			error : function(result) {
@@ -265,23 +262,11 @@
 				email : $('#email').val(),
 				city : $('#city').val(),
 				accountno : $('#accountno').val(),
-				//id : currentId
 			},
 			success : function() 
 			{
 				alert('data edited');
 				console.log("Added");
-				/* $('#name').val(" "), 
-				$('#email').val(" "), 
-				$('#city').val(" "),
-				$('#accountno').val(" "),
-				
-				$('#editModal').modal('hide');
-				if (edited == 1) {
-					cityData(currentCity);
-					edited = 0;
-				}
-				currentId = 0; */
 			}
 		});
 	}
@@ -324,10 +309,6 @@
 			  alert("city can't be blank");  
 			  return false;  
 		}
-		/* else if(password.length<6){  
-		  alert("Password must be at least 6 characters long.");  
-		  return false;  
-		} */  
 	}
 </script>
 </html>

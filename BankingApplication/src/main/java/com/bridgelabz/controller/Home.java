@@ -43,45 +43,44 @@ public class Home extends HttpServlet {
 			System.out.println("inside update data class");
 			// String customer_detailid= request.getParameter("id");
 			System.out.println("id : " + customer_detailid);
-			PreparedStatement preparestatement = null;
-			Connection connection = null;
+			//PreparedStatement preparestatement = null;
+			//Connection connection = null;
 			//String getquery = HomeDAO.getCustomerDetail();
-
+			int id=Integer.parseInt(customer_detailid);
 			try {
 				//connection = BankDAO.getConnection();
 				//preparestatement = connection.prepareStatement(getquery);
-				CustomerDetail customerdetail = new CustomerDetail();
-				customerdetail.setId(Integer.parseInt(customer_detailid));
-				preparestatement.setInt(1, customerdetail.getId());
-				resultset = preparestatement.executeQuery();
-				if (resultset.next()) {
+				//CustomerDetail customerdetail = new CustomerDetail();
+				//customerdetail.setId(Integer.parseInt(customer_detailid));
+				//customerdetail=HomeDAO.getCustomerDetail(id);
+				//preparestatement.setInt(1, customerdetail.getId());
+				//resultset = preparestatement.executeQuery();
+				/*if (resultset.next()) {
 					name = resultset.getString(2);
 					email = resultset.getString(3);
 					accountno = resultset.getString(4);
-					city = resultset.getString(5);
-					System.out.println("name " + name + "email " + email + "accountno " + accountno + "city " + city);
-					JSONObject obj = updateAccount(Integer.parseInt(customer_detailid));
-					//out.println(obj.toJSONString());insertCustomerDetail
-					System.out.println("---home--->" + obj.get("name"));
-					//Home.editAccount(Integer.parseInt(customer_detailid));
+					city = resultset.getString(5);*/
 					
-				}
-			} catch (SQLException se) {
+					//System.out.println("name " + customerdetail.getName() + "email " + customerdetail.getEmail() + "accountno " + customerdetail.getAccountno() + "city " + customerdetail.getCity());
+					JSONObject obj = updateAccount(Integer.parseInt(customer_detailid));
+					
+					/*JSONObject obj = new JSONObject();
+					obj.put("name", customerdetail.getName());
+					obj.put("email", customerdetail.getEmail());
+					obj.put("city", customerdetail.getCity());
+					obj.put("accountno", customerdetail.getAccountno());
+					JSONArray array = new JSONArray();
+					array.add(obj);*/
+					
+					System.out.println("fwehdf--->"+obj.toJSONString());
+					//out.println(obj.toJSONString());insertCustomerDetail
+					
+					out.print(obj.toJSONString());
+					
+					
+				//}
+			} catch (Exception se) {
 				se.printStackTrace();
-			} finally {
-				try {
-					if (preparestatement != null)
-						preparestatement.close();
-
-				} catch (SQLException se2) {
-					se2.printStackTrace();
-				}
-				try {
-					if (connection != null)
-						connection.close();
-				} catch (SQLException se) {
-					se.printStackTrace();
-				}
 			}
 		} 
 		
@@ -128,26 +127,31 @@ public class Home extends HttpServlet {
 
 	public static JSONObject updateAccount(int customer_detailid) {
 		JSONObject obj = new JSONObject();
-		PreparedStatement preparetatement = null;
+		//PreparedStatement preparetatement = null;
 		try {
-			preparetatement.setInt(1, customer_detailid);
-			ResultSet rs = preparetatement.executeQuery();
+			//preparetatement.setInt(1, customer_detailid);
+			//ResultSet rs = preparetatement.executeQuery();
 			System.out.println("before rs");
-			if (rs.next()) {
+			CustomerDetail customerdetail = new CustomerDetail();
+			//customerdetail.setId(Integer.parseInt(customer_detailid));
+			customerdetail=HomeDAO.getCustomerDetail(customer_detailid);
+			
+			/*if (rs.next()) {
 				System.out.println("after rs");
 				String name = rs.getString("name");
 				String email = rs.getString("email");
 				String city = rs.getString("city");
 				String accountno = rs.getString("accountno");
 				System.out.println("sids log " + name + email + city);
-				obj.put("name", name);
-				obj.put("email", email);
-				obj.put("city", city);
-				obj.put("accountno", accountno);
+			*/	System.out.println("name " + customerdetail.getName() + "email " + customerdetail.getEmail() + "accountno " + customerdetail.getAccountno() + "city " + customerdetail.getCity());
+				obj.put("name", customerdetail.getName());
+				obj.put("email", customerdetail.getEmail());
+				obj.put("city", customerdetail.getCity());
+				obj.put("accountno", customerdetail.getAccountno());
 				JSONArray array = new JSONArray();
 				array.add(obj);
-				preparetatement.close();
-			}
+				//preparetatement.close();
+			//}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

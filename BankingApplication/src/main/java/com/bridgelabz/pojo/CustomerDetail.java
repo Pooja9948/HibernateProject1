@@ -73,4 +73,11 @@ public class CustomerDetail {
 		this.inputby = inputby;
 	}
 
+	@Override
+	public String toString() {
+		return "CustomerDetail [id=" + id + ", name=" + name + ", email=" + email + ", accountno=" + accountno
+				+ ", city=" + city + ", inputby=" + inputby + "]";
+	}
+	
+
 }

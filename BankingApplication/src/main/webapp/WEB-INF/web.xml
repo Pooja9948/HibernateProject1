@@ -12,20 +12,21 @@
 		<welcome-file>RegistrationPage.jsp</welcome-file>
 	</welcome-file-list>
 
-	<servlet>
+	<!-- <servlet>
 		<servlet-name>RegistrationPage</servlet-name>
 		<jsp-file>/RegistrationPage.jsp</jsp-file>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RegistrationPage</servlet-name>
-		<url-pattern>/RegistrationPage</url-pattern>
-	</servlet-mapping>
-
-
-	<servlet>
+	</servlet> -->
+	<!-- <servlet>
 		<servlet-name>Registration</servlet-name>
 		<servlet-class>com.bridgelabz.controller.Registration</servlet-class>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>RegistrationPage</servlet-name>
+		<url-pattern>/Registration</url-pattern>
+	</servlet-mapping> -->
+
+
+	
 	<servlet>
 		<description>
 		</description>
@@ -40,11 +41,18 @@
 		<servlet-name>Home</servlet-name>
 		<servlet-class>com.bridgelabz.controller.Home</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Registration</display-name>
+		<servlet-name>Registration</servlet-name>
+		<servlet-class>com.bridgelabz.controller.Registration</servlet-class>
+	</servlet>
 
-	<servlet-mapping>
+	<!-- <servlet-mapping>
 		<servlet-name>Registration</servlet-name>
 		<url-pattern>/Registration</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 	<servlet-mapping>
 		<servlet-name>Login</servlet-name>
 		<url-pattern>/Login</url-pattern>
@@ -52,6 +60,10 @@
 	<servlet-mapping>
 		<servlet-name>Home</servlet-name>
 		<url-pattern>/Home</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Registration</servlet-name>
+		<url-pattern>/Registration</url-pattern>
 	</servlet-mapping>
 
 

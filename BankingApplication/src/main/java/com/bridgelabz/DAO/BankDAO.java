@@ -24,10 +24,6 @@ public class BankDAO {
 		Criteria criteria = session.createCriteria(UserDetails.class);
 		Criterion email1 = Restrictions.eq("email", email);
 		Criterion password1 = Restrictions.eq("password", password);
-		/*
-		 * Transaction transaction = null; transaction =
-		 * session.beginTransaction(); transaction.commit();
-		 */
 		LogicalExpression andExp = Restrictions.and(email1, password1);
 		criteria.add(andExp);
 		UserDetails userDetails = null;

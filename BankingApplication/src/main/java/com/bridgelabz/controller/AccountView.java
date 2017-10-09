@@ -35,29 +35,11 @@ public class AccountView extends HttpServlet{
 	    	CustomerDetail customerdetail = new CustomerDetail();
 	    	customerdetail.setCity(city);
 			customerdetail.setInputby(id);
-			customerdetail=HomeDAO.getAllCustomerDetail(id,city);
-			/*preparestatement.setString(1, customerdetail.getCity());
-	        preparestatement.setString(2, customerdetail.getInputby());
-	        resultset=preparestatement.executeQuery();*/
-	       
-	        /*while(customerdetail.nex){
-	        	CustomerDetail customerdetail1 = new CustomerDetail();
-	        	customerdetail.getInt("id");
-	        	customerdetail.getString("name");
-	        	customerdetail.getString("email");
-	        	customerdetail.getString("account_number");
-	        	customerdetail.getString("city");*/
-	        	obj.add(customerdetail);
-	        	
-	        response.sendRedirect("accountview.jsp");
-	       //}
-	       
+			obj=(List<CustomerDetail>) HomeDAO.getAllCustomerDetail(id,city);
 	        System.out.println("Current array list is:"+obj);
 	    }catch(Exception se) {
 	         se.printStackTrace();
-	      } finally {
-	         
-	      }
+	     }
 	    request.setAttribute("list",obj );
 	    RequestDispatcher dispatcher= request.getRequestDispatcher("accountview.jsp");
 	    dispatcher.forward(request, response);

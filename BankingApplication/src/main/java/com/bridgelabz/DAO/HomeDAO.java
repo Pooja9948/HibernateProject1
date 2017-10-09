@@ -44,48 +44,46 @@ public class HomeDAO {
 	
 	
 	
-	public static CustomerDetail getAllCustomerDetail(String id,String city) {
-		System.out.println("inside getAllCustomerDetail---->");
+	public static List<CustomerDetail> getAllCustomerDetail(String id,String city) {
+		System.out.println("inside getAllCustomerDetail---->"+id);
 		SessionFactory sessionFactory = SingleTon.getSF();
 		Session session = sessionFactory.openSession();
-		int status = 0;
 		Criteria criteria=session.createCriteria(CustomerDetail.class);
-		Criterion id1 = Restrictions.eq("id", id);
-		Criterion city1 = Restrictions.eq("city", city);
-		LogicalExpression andExp = Restrictions.and(id1, city1);
-		criteria.add(andExp);
-		CustomerDetail customerDetail=null;
+		criteria.add(Restrictions.eq("inputby", id));
+		criteria.add(Restrictions.eq("city", city));
+		List<CustomerDetail> customerList = criteria.list();
+		//System.out.println(customerList);
+		return customerList;
+	}
+	public static CustomerDetail getCustomerDetail(int id){
+		System.out.println("inside updateCustomerDetail---->");
+		SessionFactory sessionFactory = SingleTon.getSF();
+		Session session = sessionFactory.openSession();
+		Criteria criteria=session.createCriteria(CustomerDetail.class);
+		criteria.add(Restrictions.eq("id", id));
+		CustomerDetail customerList=null;
 		List result = criteria.list();
 		Iterator iterator = result.iterator();
-		String name="";
-		String email="";
-		String accountno="";
-		String city2="";
-		int id2=0;
+		String name = "";
+		String email = "";
+		String city = "";
+		String accountno = "";
+
+		int id1 = 0;
 		while (iterator.hasNext()) {
-			customerDetail = (CustomerDetail) iterator.next();
-			System.out.println("user name is--> " + customerDetail.getName());
-			name = customerDetail.getName();
-			System.out.println("user id is--> " + customerDetail.getId());
-			id2 = customerDetail.getId();
-			email=customerDetail.getEmail();
-			accountno=customerDetail.getAccountno();
-			city2=customerDetail.getCity();
+			customerList = (CustomerDetail) iterator.next();
+			System.out.println("user name is--> " + customerList.getName());
+			name = customerList.getName();
+			System.out.println("user id is--> " + customerList.getId());
+			id1 = customerList.getId();
+			email = customerList.getEmail();
+			city = customerList.getCity();
+			accountno = customerList.getAccountno();
 		}
 		session.close();
-		System.out.println("outside getAllCustomerDetail---->");
-		return customerDetail;
+		return customerList;
 	}
-	/*public static String insertCustomerDetail() {
-		System.out.println("inside insertCustomerDetail");
-		String query="INSERT INTO `banking_application`.`customer_detail` (`name`, `email`,`accountno`,`city`, `inputby`) VALUES (?,?,?,?,?)";
-		return query;
-	}
-
-	public static String getAllCustomerDetail() {
-		String query="SELECT * FROM `banking_application`.`customer_detail` WHERE city=? and inputby=?";
-		return query;
-	}
+	/*
 	public static String updateCustomerDetail(){
 		System.out.println("inside updateCustomerDetail11111111111111111111");
 		String query="UPDATE `banking_application`.`customer_detail` SET name=? , email=? , accountno=? ,city=? WHERE customer_detailid=?";
