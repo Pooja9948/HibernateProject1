@@ -16,8 +16,13 @@ import com.bridgelabz.pojo.UserDetails;
 
 public class BankDAO {
 
+	/**
+	 * @param email
+	 * @param password
+	 * @return
+	 * checking the email and password 
+	 */
 	public static UserDetails login(String email, String password) {
-		System.out.println("inside registration---->");
 		SessionFactory sessionFactory = SingleTon.getSF();
 		Session session = sessionFactory.openSession();
 		int status = 0;
@@ -43,8 +48,12 @@ public class BankDAO {
 
 	}
 
+	/**
+	 * @param userDetails
+	 * @return
+	 * inserting all the data of user to the database
+	 */
 	public static int registration(UserDetails userDetails) {
-		System.out.println("inside registration---->");
 		SessionFactory sessionFactory = SingleTon.getSF();
 		Session session = sessionFactory.openSession();
 		Transaction transaction = null;
@@ -68,16 +77,4 @@ public class BankDAO {
 		return status;
 	}
 
-	/*
-	 * public static String insertUserDetail() { String query =
-	 * "INSERT INTO `banking_application`.`user_detail` (`name`, `email`, `password`, `mobileno`) VALUES (?,?,?,?)"
-	 * ; return query; }
-	 * 
-	 * public static String checkUserDetail() { String query =
-	 * "SELECT * FROM `banking_application`.`user_detail` WHERE email=? and password=?"
-	 * ; return query; }
-	 * 
-	 * public static int hello() { Random r = new Random(); int n =
-	 * r.nextInt(10); System.out.println(n); return n; }
-	 */
 }

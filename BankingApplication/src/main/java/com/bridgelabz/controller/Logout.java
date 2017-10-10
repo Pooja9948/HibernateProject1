@@ -10,10 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+/**
+ * @author Pooja user logout
+ *
+ */
 @WebServlet("/Logout")
 public class Logout extends HttpServlet{
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * @param request
+	 * @param response
+	 * In this servlet we logout from the home page and expiring the session
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		HttpSession session=request.getSession();
 		session.removeAttribute("id");

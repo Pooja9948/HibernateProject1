@@ -1,11 +1,9 @@
 package com.bridgelabz.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +13,19 @@ import com.bridgelabz.DAO.BankDAO;
 import com.bridgelabz.pojo.UserDetails;
 
 //@WebServlet("/Registration")
+/**
+ * @author Pooja for registration form page
+ *
+ */
 public class Registration extends HttpServlet{
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * @param request
+	 * @param response
+	 * In this servlet, its saving all the information about user in the database and redirect to the loginpage
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		
 	    try {

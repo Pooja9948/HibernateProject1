@@ -17,6 +17,11 @@ import com.bridgelabz.pojo.UserDetails;
 
 public class HomeDAO {
 	
+	/**
+	 * @param customerdetail
+	 * @return 
+	 * inserting the customer data
+	 */
 	public static int insertCustomerDetail(CustomerDetail customerdetail) {
 		System.out.println("inside insertCustomerDetail---->");
 		SessionFactory sessionFactory = SingleTon.getSF();
@@ -41,9 +46,12 @@ public class HomeDAO {
 		}
 		return status;
 	}
-	
-	
-	
+	/**
+	 * @param id
+	 * @param city
+	 * @return
+	 * getting all customer details using id and city
+	 */
 	public static List<CustomerDetail> getAllCustomerDetail(String id,String city) {
 		System.out.println("inside getAllCustomerDetail---->"+id);
 		SessionFactory sessionFactory = SingleTon.getSF();
@@ -52,9 +60,13 @@ public class HomeDAO {
 		criteria.add(Restrictions.eq("inputby", id));
 		criteria.add(Restrictions.eq("city", city));
 		List<CustomerDetail> customerList = criteria.list();
-		//System.out.println(customerList);
 		return customerList;
 	}
+	/**
+	 * @param id
+	 * @return
+	 * getting a perticular customer detail
+	 */
 	public static CustomerDetail getCustomerDetail(int id){
 		System.out.println("inside updateCustomerDetail---->");
 		SessionFactory sessionFactory = SingleTon.getSF();
@@ -83,19 +95,68 @@ public class HomeDAO {
 		session.close();
 		return customerList;
 	}
-	/*
-	public static String updateCustomerDetail(){
-		System.out.println("inside updateCustomerDetail11111111111111111111");
-		String query="UPDATE `banking_application`.`customer_detail` SET name=? , email=? , accountno=? ,city=? WHERE customer_detailid=?";
-		return query;
+	/**
+	 * @param customerdetail
+	 * @return
+	 * updating the customer detail of a perticular id
+	 */
+	public static int updateCustomerDetail(CustomerDetail customerdetail){
+		System.out.println("inside updateCustomerDetail---->");
+		SessionFactory sessionFactory = SingleTon.getSF();
+		Session session = sessionFactory.openSession();
+		int status = 0;
+		try {
+			
+			Transaction transaction = null;
+			
+			transaction = session.beginTransaction();
+			session.saveOrUpdate(customerdetail);;
+			transaction.commit();
+			status = 1;
+			return status;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				if (session != null || sessionFactory != null)
+					session.close();
+				    sessionFactory.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return status;
 	}
-	public static String getCustomerDetail(){
-		String query="SELECT * FROM `banking_application`.`customer_detail` WHERE customer_detailid=?";
-		return query;
+	/**
+	 * @param customerDetail
+	 * @return
+	 * deleting a perticular customer through a perticular id
+	 */
+	public static int deleteCustomerDetail(CustomerDetail customerDetail) {
+		System.out.println("inside deleteCustomer---->");
+		SessionFactory sessionFactory = SingleTon.getSF();
+		Session session = sessionFactory.openSession();
+		int status = 0;
+		try {
+			
+			Transaction transaction = null;
+			
+			transaction = session.beginTransaction();
+			session.delete(customerDetail);
+			transaction.commit();
+			status = 1;
+			return status;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		} finally {
+			try {
+				if (session != null || sessionFactory != null)
+					session.close();
+				    sessionFactory.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return status;
 	}
-
-	public static String deleteCustomer() {
-		String query="DELETE FROM `banking_application`.`customer_detail` WHERE customer_detailid=?";
-		return query;
-	}*/
 }

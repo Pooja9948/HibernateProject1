@@ -2,9 +2,6 @@ package com.bridgelabz.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
-import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,11 +13,22 @@ import com.bridgelabz.DAO.BankDAO;
 import com.bridgelabz.pojo.CustomerDetail;
 import com.bridgelabz.pojo.UserDetails;
 
+/**
+ * @author Pooja user login page
+ *
+ */
 public class Login extends HttpServlet {
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPost(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 * @param request
+	 * @param response
+	 * In this servlet , its checking the mailid and password are exists in the database or not.
+	 * If it returns true then it will go to home page. putting username and id in the session.
+	 * else it will redirect to the same login page
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		System.out.println("hrtgefadqhfd");
-		PrintWriter out = response.getWriter();
 		response.setContentType("text/html");
 		String email= request.getParameter("email");
 		System.out.println(email);

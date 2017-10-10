@@ -3,10 +3,13 @@ package com.bridgeit.SingleTon;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+/**
+ * @author bridgeit Using of SessionFactory
+ *
+ */
 public class SingleTon {
 
 	public SingleTon() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public static SessionFactory sf;
