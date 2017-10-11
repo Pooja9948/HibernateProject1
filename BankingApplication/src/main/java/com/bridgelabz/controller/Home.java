@@ -2,8 +2,6 @@ package com.bridgelabz.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -28,6 +27,7 @@ public class Home extends HttpServlet {
 	 *  In this doPost() we are adding and taking the data of a perticular id in the database.
 	 *  if servlet get id then it will go to the if condition update the data else add the data
 	 */
+	public static Logger logger = Logger.getLogger(Home.class);
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		System.out.println(" inside home class");
 		String customer_detailid = request.getParameter("id");
@@ -36,6 +36,11 @@ public class Home extends HttpServlet {
 		String email = "";
 		String accountno = "";
 		String city = "";
+		logger.fatal("log4j warn level logger");
+		logger.trace("trace logger");
+		logger.debug("..........");
+		logger.error("vnhgj");
+		logger.fatal("fgh");
 		System.out.println("customer_detailid : " + customer_detailid);
 		/*FOR EDITING CUSTOMER*/
 		if (customer_detailid != null) {
